@@ -1,0 +1,1 @@
+// tratar erros como 404, 500 de forma separada
