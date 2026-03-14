@@ -16,14 +16,14 @@
                     <span class="icon"></span>
                     <input v-model="password" type="password" placeholder="Password">Senha</input>
                 </div>
+            
+                <button @click="login">Entrar</button>
+
                 <div class="remember_password">
                     <a href="#">Esqueci minha senha</a>
                 </div>
-                
-                <button @click="login">Entrar</button>
             </form>
         </div>
-
     </div>
     
     
