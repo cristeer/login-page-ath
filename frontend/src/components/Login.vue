@@ -90,26 +90,34 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background: #c7c6c6;
+        width: 100vw;
+        background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133);
     }
+    
     .caixa {
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
         width: 400px;
-        height: 440px;
+        height: 450px;
         background: transparent;
-        border: 2px solid #c0bfbf;
+        border: 2px solid #fffefe9c;
         border-radius: 15px;
+        background: oklch(20.463% 0.00002 271.152 / 0.534);
         backdrop-filter: blur(20px);
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         overflow: hidden;
     }
 
+    .login_form h1 {
+        margin-bottom: 40px;
+        
+    }
+    
     .login_form h1, .registration_form h1 {
         font-size: 2em;
-        color: #333;
+        color: #ffffff;
         text-align: center;
     }
 
@@ -150,7 +158,7 @@
         left: 5px;
         transform: translateY(-50%);
         font-size: 1.1em;
-        color:#0e0d0d;
+        color:#ffffff;
         font-weight: 500 ;
         pointer-events: none;
         transition: 0.5s;
@@ -164,12 +172,13 @@
     .input-box input {
         width: 100%;
         height: 100%;
-        background: transparent;
+        background: rgba(255, 255, 255, 0.123);
+        border: 1px solid rgba(255, 255, 255, 0.5);
         border-radius: 10px;
         outline: none;
         padding: 0 5px;
         font-size: 1rem;
-        color: #0e0d0d;
+        color: #ffffff;
         font-weight: 500;
         padding: 0 35px 0 5px;
     }
@@ -181,12 +190,8 @@
     }
 
     .remember_password a {
-        color: #2d07b6;
+        color: #ffffff;
         text-decoration: none;
-    }
-
-    .remember_password a:hover {
-        text-decoration: underline;
     }
 
     .register,  .login {
@@ -196,14 +201,18 @@
     }
 
     .register a, .login a {
-        color: #2d07b6;
+        color: #ffffff;
         text-decoration: none;
     }
 
-    .register a:hover, .login a:hover {
+    .register a:hover, .login a:hover, .remember_password a:hover {
         text-decoration: underline;
+        color: rgb(137, 71, 241);
     }
 
+    .register p, .login p {
+        color: #ffffff;
+    }
     button {
         width: 100%;
         height: 45px;
