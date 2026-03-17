@@ -1,23 +1,26 @@
 <script setup>
     import { ref } from 'vue'
 
-    const isLogin = ref(true) // Variável reativa para alternar entre as abas
+    // Variável para alternar entre as abas login/cadastro
+    const isLogin = ref(true) 
 
     const name = ref('')
     const email = ref('')
     const password = ref('')
 
+    //evento de submit do login
     const login = () => {
         console.log("Tentativa de login:", email.value, password.value)
     }
 
+    //evento de submit do cadastro
     const register = () => {
         console.log("Tentativa de registro:", name.value, email.value, password.value)
     }
 </script>
 
 <template>
-    <body>
+    <main>
         <div class="caixa" :class="{ active: !isLogin }">
             <div class="login_form">
                 <h1>Login</h1>
@@ -75,7 +78,7 @@
             </div>
 
         </div>
-    </body>
+    </main>
 </template>
 
 <style>
@@ -85,13 +88,17 @@
         box-sizing: border-box;
     }
 
-    body {
+    main {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         width: 100vw;
-        background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133);
+        /* background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133); */
+        background-image: url('../../public/background.jpg');
+        background-size: cover;
+        background-position: center; 
+        background-repeat: no-repeat;
     }
     
     .caixa {
@@ -125,23 +132,27 @@
         position: absolute;
         width: 100%;
         padding: 40px;
-        transition: transform 0.5s ease; /* Animação suave entre as abas */
+        transition: transform 0.5s ease; /* Animação entre as abas */
     }
     
     .login_form {
-        transform: translateX(0); /* Fica no centro por padrão */
+        /* ficar no centro por padrão */
+        transform: translateX(0); 
     }
 
     .registration_form {
-        transform: translateX(400px); /* Fica escondido na direita por padrão */
+        /* ficar escondido na direita por padrão */
+        transform: translateX(400px); 
     }
 
     .caixa.active .login_form {
-        transform: translateX(-400px); /* Quando ativo, desliza o login para a esquerda */
+        /* deslizar o login para a esquerda */
+        transform: translateX(-400px); 
     }
 
     .caixa.active .registration_form {
-        transform: translateX(0); /* Quando ativo, traz o registro para o centro */
+        /* deslizar cadastro para o centro */
+        transform: translateX(0);
     }
     
     .input-box {
