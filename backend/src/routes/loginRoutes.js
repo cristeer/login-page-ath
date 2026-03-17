@@ -4,6 +4,7 @@ import loginController from "../controllers/loginController.js";
 
 const routes = express.Router();
 
-routes.post("/", loginController.cadastrarLogin);
+routes.post("/register", loginController.cadastrarLogin);
+routes.post("/login", loginController.verificarLogin);
 
 export default routes;
