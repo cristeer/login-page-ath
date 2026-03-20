@@ -1,64 +1,83 @@
 <script setup>
+    import { ref } from 'vue'
+    
+    // Variável para alternar entre as abas login/cadastro
+    const isLogin = ref(true) 
 
+    const name = ref('')
+    const email = ref('')
+    const password = ref('')
+
+    //evento de submit do login
+    const login = () => {
+        console.log("Tentativa de login:", email.value, password.value)
+    }
+
+    //evento de submit do cadastro
+    const register = () => {
+        console.log("Tentativa de registro:", name.value, email.value, password.value)
+    }
 </script>
 
-<template>
-    <div class="caixa">
-        <div class="login_form">
-            <h1>Login</h1>
-            
-            <form>
-                <div class="input-box">
-                    <span class="icon"></span>
-                    <input v-model="email" type="email" placeholder="Email">Email</input>
-                </div>
-                <div class="input-box">
-                    <span class="icon"></span>
-                    <input v-model="password" type="password" placeholder="Password">Senha</input>
-                </div>
-                <div class="remember_password">
-                    <a href="#">Esqueci minha senha</a>
-                </div>
-                
-                <button @click="login">Entrar</button>
-            </form>
-        </div>
+<template>   
+    <main>
+        <div class="caixa" :class="{ active: !isLogin }">
+            <div class="login_form">
+                <h1>Login</h1>
+        
+                <form @submit.prevent="login">
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input v-model="email" type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input v-model="password" type="password" required>
+                        <label>Senha</label>
+                    </div>
+        
+                    <button type="submit">Entrar</button>
+                    <div class="remember_password">
+                        <a href="#">Esqueci minha senha</a>
+                    </div>
+                    <div class="register">
+                        <p>Não tem uma conta? <a href="#" @click.prevent="isLogin = false">Cadastrar-se</a></p>
+                    </div>
+                </form>
+            </div>
 
-    </div>
-    
-    
-    
-    
-    <!-- <div class="login_page">
-        <div class="login_form">
-            <h1>Login</h1>
+            <div class="registration_form">
+                <h1>Criar Conta</h1>
+        
+                <form @submit.prevent="register">
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input v-model="name" type="text" required>
+                        <label>Nome</label>
+                    </div>
 
-            <input v-model="email" type="email" placeholder="Email">
-            <input v-model="password" type="password" placeholder="Password">
-            <button @click="login">Login</button>
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input v-model="email" type="email" required>
+                        <label>Email</label>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input v-model="password" type="password" required>
+                        <label>Senha</label>
+                    </div>
+        
+                    <button type="submit">Cadastrar</button>
+
+                    <div class="login">
+                        <p>Já tem uma conta? <a href="#" @click.prevent="isLogin = true">Entrar</a></p>
+                    </div>
+                </form>
+            </div>
+
         </div>
-    </div> -->
+    </main>
 </template>
 
-<style>
-    /* body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
-
-    .login_page {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-    .login_form {
-        display: flex;
-        flex-direction: column;
-        border: 2px solid #ccc;
-        padding: 60px;
-        align-items: center;
-    } */
-</style>
