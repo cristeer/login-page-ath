@@ -1,22 +1,48 @@
 <script setup>
     import { ref } from 'vue'
-    
-    // Variável para alternar entre as abas login/cadastro
-    const isLogin = ref(true) 
+    import axios from 'axios';
 
+    // Variável reativa para alternar entre as abas
+    const isLogin = ref(true) 
+    
     const name = ref('')
     const email = ref('')
     const password = ref('')
+    
+    const login = async(event) => {
+        event.preventDefault();
 
-    //evento de submit do login
-    const login = () => {
-        console.log("Tentativa de login:", email.value, password.value)
+        try {
+            const resposta = await axios.post('http://localhost:3000/login', {
+                email: email.value
+            });
+            alert(`Usuário ${email.value} logado com sucesso!`);
+            console.log("Tentativa de login:", email.value);
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert("Falha ao realizar login/cadastro.");
+        }
+
     }
 
-    //evento de submit do cadastro
-    const register = () => {
-        console.log("Tentativa de registro:", name.value, email.value, password.value)
+    const register = async(event) => {
+        event.preventDefault();
+        
+        try {
+            const response = await axios.post('http://localhost:3000/register', {
+                nome: name.value,
+                email: email.value,
+                senha: password.value
+            });
+            
+            alert(`Usuário ${response.data.nome} cadastrado!`);
+            console.log("Dados do banco:", response.data.user);
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert("Falha ao realizar login/cadastro.");
+        }
     }
+
 </script>
 
 <template>   
@@ -39,10 +65,10 @@
         
                     <button type="submit">Entrar</button>
                     <div class="remember_password">
-                        <a href="#">Esqueci minha senha</a>
+                        <a href="recuperar">Esqueci minha senha</a>
                     </div>
                     <div class="register">
-                        <p>Não tem uma conta? <a href="#" @click.prevent="isLogin = false">Cadastrar-se</a></p>
+                        <p>Não tem uma conta? <a href="register" @click.prevent="isLogin = false">Cadastrar-se</a></p>
                     </div>
                 </form>
             </div>
@@ -72,7 +98,7 @@
                     <button type="submit">Cadastrar</button>
 
                     <div class="login">
-                        <p>Já tem uma conta? <a href="#" @click.prevent="isLogin = true">Entrar</a></p>
+                        <p>Já tem uma conta? <a href="login" @click.prevent="isLogin = true">Entrar</a></p>
                     </div>
                 </form>
             </div>
