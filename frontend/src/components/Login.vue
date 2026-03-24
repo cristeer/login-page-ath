@@ -13,13 +13,15 @@
 
         try {
             const resposta = await axios.post('http://localhost:3000/login', {
-                email: email.value
+                email: email.value,
+                senha: password.value
             });
             alert(`Usuário ${email.value} logado com sucesso!`);
-            console.log("Tentativa de login:", email.value);
+            localStorage.setItem('token', resposta.data.token);
+            console.log("Token:", resposta.data.token);
         } catch (error) {
             console.error("Erro na requisição:", error);
-            alert("Falha ao realizar login/cadastro.");
+            alert(error.response?.data?.message || "Falha ao realizar login.");
         }
 
     }
@@ -34,11 +36,11 @@
                 senha: password.value
             });
             
-            alert(`Usuário ${response.data.nome} cadastrado!`);
-            console.log("Dados do banco:", response.data.user);
+            alert(response.data.message);
+            console.log("Dados do usuário:", response.data.user);
         } catch (error) {
             console.error("Erro na requisição:", error);
-            alert("Falha ao realizar login/cadastro.");
+            alert(error.response?.data?.message || "Falha ao realizar cadastro.");
         }
     }
 
