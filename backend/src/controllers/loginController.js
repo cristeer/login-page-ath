@@ -11,13 +11,9 @@ class loginController {
             return res.status(400).json({ message : "Os campos: Nome, email e senha são obrigatórios" });
         }
 
-        // Validação básica
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             return res.status(400).json({ message: "Email inválido" });
-        }
-        if (senha.length < 6) {
-            return res.status(400).json({ message: "A senha deve ter pelo menos 6 caracteres" });
         }
 
         try {
@@ -25,7 +21,7 @@ class loginController {
             res.status(201).json({ message: "Usuário cadastrado com sucesso", user: novoUsuario });
         } catch (error) {
             console.error(error);
-            if (error.code === '23505') { // Unique violation
+            if (error.code === '23505') { //erro definido pelo Postgres quando tem valor duplicado
                 res.status(400).json({ message: "Email já cadastrado" });
             } else {
                 res.status(500).json({ message: `Erro interno no servidor ao salvar dados ${error.message}` });

@@ -7,8 +7,8 @@ const app = express();
 app.use(cors());
 
 // app.use(cors({
-//   origin: 'http://localhost:5173/forget', // Apenas seu site acessa
-//   methods: ['GET', 'POST'],          // Apenas esses métodos permitidos
+//   origin: 'http://localhost:5173/forget',
+//   methods: ['GET', 'POST'],
 // }));
 
 routes(app);
