@@ -1,8 +1,11 @@
 <script setup>
     import { ref } from 'vue'
+    import { useRouter } from 'vue-router'  // ← Importa o router
     
     // Importa axios para fazer requisições HTTP ao backend
     import axios from 'axios';
+    
+    const router = useRouter()  // ← Inicializa o router
    
     // Variavel reativa para controlar forms: true = login, false = register
     const isLogin = ref(true) 
@@ -26,6 +29,9 @@
             alert(`Usuário ${email.value} logado com sucesso!`);
             localStorage.setItem('token', resposta.data.token);
             console.log("Token:", resposta.data.token);
+            
+            // ← REDIRECIONA para o dashboard após login bem-sucedido
+            router.push('/dashboard');
         } catch (error) {
             console.error("Erro na requisição:", error);
             alert(error.response?.data?.message || "Falha ao realizar login.");
