@@ -1,8 +1,12 @@
 <script setup>
     import { ref } from 'vue'
+    import { useRouter } from 'vue-router'
     
     // Importa axios para fazer requisições HTTP ao backend
     import axios from 'axios';
+    
+    // Usar useRouter para redirecionamento
+    const router = useRouter()
    
     // Variavel reativa para controlar forms: true = login, false = register
     const isLogin = ref(true) 
@@ -13,7 +17,7 @@
     
     //fazer login do usuário
     const login = async(event) => {
-        // Previne o comportamento padrão do form (recarregar página)
+        // Previnir comportamento padrão do form (recarregar página)
         event.preventDefault();
 
         try {
@@ -25,7 +29,15 @@
 
             alert(`Usuário ${email.value} logado com sucesso!`);
             localStorage.setItem('token', resposta.data.token);
+            localStorage.setItem('user', JSON.stringify(resposta.data.user));
             console.log("Token:", resposta.data.token);
+            
+            // Limpar campos do formulário
+            email.value = '';
+            password.value = '';
+            
+            // Redirecionar para home
+            router.push('/home');
         } catch (error) {
             console.error("Erro na requisição:", error);
             alert(error.response?.data?.message || "Falha ao realizar login.");
