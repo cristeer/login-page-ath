@@ -1,8 +1,11 @@
 <script setup>
-import Login from './components/Login.vue';
+// import Login from './components/Login.vue';
+import { useRouter } from 'vue-router'
 
 </script>
 
 <template>
-  <Login />
+
+  <router-view />
+  
 </template>

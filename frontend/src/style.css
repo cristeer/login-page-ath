@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+:root {
+    --font-principal: 'Google Sans', sans-serif;
+    --cor-background: #16121a;
+    --cor-secundaria: rgba(255, 255, 255, 0.123);
+    --cor-botao: #40017a;
+    --cor-texto: #FFFFFF;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +21,8 @@ main {
     height: 100vh;
     width: 100vw;
     /* background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133); */
-    background-image: url('../public/background.jpg');
+    /* background-image: url('../public/background.jpg'); */
+    background-color: var(--cor-background);
     background-size: cover;
     background-position: center; 
     background-repeat: no-repeat;
@@ -34,13 +45,12 @@ main {
 }
 
 .login_form h1 {
-    margin-bottom: 40px;
-    
+    margin-bottom: 50px;
 }
 
 .login_form h1, .registration_form h1 {
     font-size: 2em;
-    color: #ffffff;
+    color: var(--cor-texto);
     text-align: center;
 }
 
@@ -54,6 +64,16 @@ main {
 .login_form {
     /* ficar no centro por padrão */
     transform: translateX(0); 
+}
+
+.title {
+    font-family: var(--font-principal);
+    font-weight: bold;
+}
+
+.text {
+    font-family: var(--font-principal);
+    color: var(--cor-texto);
 }
 
 .registration_form {
@@ -84,7 +104,7 @@ main {
     left: 5px;
     transform: translateY(-50%);
     font-size: 1.1em;
-    color:#ffffff;
+    color:var(--cor-texto);
     font-weight: 500 ;
     pointer-events: none;
     transition: 0.5s;
@@ -98,13 +118,13 @@ main {
 .input-box input {
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.123);
+    background: var(--cor-secundaria);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     outline: none;
     padding: 0 5px;
     font-size: 1rem;
-    color: #ffffff;
+    color: var(--cor-texto);
     font-weight: 500;
     padding: 0 35px 0 5px;
 }
@@ -116,7 +136,7 @@ main {
 }
 
 .remember_password a {
-    color: #ffffff;
+    color: var(--cor-texto);
     text-decoration: none;
 }
 
@@ -127,7 +147,7 @@ main {
 }
 
 .register a, .login a {
-    color: #ffffff;
+    color: var(--cor-texto);
     text-decoration: none;
 }
 
@@ -137,15 +157,15 @@ main {
 }
 
 .register p, .login p {
-    color: #ffffff;
+    color: var(--cor-texto);
 }
 button {
     width: 100%;
     height: 45px;
-    background: #40017a;
+    background: var(--cor-botao);
     border: none;
     outline: none;
-    color: #fff;
+    color: var(--cor-texto);
     font-size: 1.1em;
     font-weight: 500;
     border-radius: 6px;
@@ -155,3 +175,4 @@ button {
 button:hover {
     background: #28014d;
 }
+
