@@ -1,3 +1,3 @@
 <template>
-    <p>OI DIEGO</p>
+    <p>OI SAMUEL</p>
 </template>

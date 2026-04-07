@@ -15,15 +15,15 @@ function logout() {
       <nav class="nav-links">
         <a href="/home" class="text">Home</a>
         <a href="/about" class="text">About</a>
-        <a href="#" class="text">Contact</a>
+        <a href="/contato" class="text">Contact</a>
       </nav>
       <button class="logout-button" type="button" @click="logout">Sair</button>
     </div>
   </header>
   <main>
     <div class="home-container">
-      <h1>Bem-vindo à Home!</h1>
-      <p>Teste</p>
+      <h1 class="texto">Bem-vindo à Home!</h1>
+      <p class="texto">Pronto para elevar sua nota?!</p>
     </div>
   </main>
 </template>
@@ -33,10 +33,15 @@ function logout() {
 
 :root {
     --font-principal: 'Google Sans', sans-serif;
-    --cor-background: #16121a;
+    --cor-background: #5C3E94;
+    --cor-fundo: #5C3E94;
     --cor-secundaria: rgba(255, 255, 255, 0.123);
-    --cor-botao: rgba(52, 52, 53, 0.534);
+    --cor-botao: #7132CA;
     --cor-texto: #FFFFFF;
+}
+.texto {
+  font-family: var(--font-principal);
+  color: var(--cor-texto);
 }
 
 .home-header {
@@ -44,7 +49,7 @@ function logout() {
   flex-direction: row;
   align-items: center;
   padding: 20px;
-  background-color: oklch(20.463% 0.00002 271.152 / 0.534);
+  background-color: var(--cor-fundo);
 }
 
 .header-div {
@@ -75,13 +80,21 @@ function logout() {
   width: 120px;
   border: none;
   border-radius: 6px;
-  background: #28014d;
+  background: #8257d1;
   color: var(--cor-texto);
   font-family: var(--font-principal);
   cursor: pointer;
 }
 
 .logout-button:hover {
-  background: #190a31;
+  background: #28014d;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 </style>
