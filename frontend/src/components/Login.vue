@@ -1,11 +1,9 @@
 <script setup>
     import { ref } from 'vue'
     import { useRouter } from 'vue-router'
-    
-    // Importa axios para fazer requisições HTTP ao backend
     import axios from 'axios';
     
-    // Usar useRouter para redirecionamento
+    // useRouter para redirecionamento
     const router = useRouter()
    
     // Variavel reativa para controlar forms: true = login, false = register

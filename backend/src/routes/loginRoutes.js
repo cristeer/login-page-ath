@@ -1,9 +1,3 @@
-// ============================================================================
-// 📌 ARQUIVO: loginRoutes.js
-// DESCRIÇÃO: Rotas de autenticação (registro e login)
-// FUNÇÃO: Definir endpoints para criação de conta e autenticação de usuário
-// ============================================================================
-
 import express from "express";
 import loginController from "../controllers/loginController.js";
 
