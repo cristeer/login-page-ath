@@ -14,8 +14,8 @@ function logout() {
     <div class="header-div">
       <nav class="nav-links">
         <a href="/home" class="text">Home</a>
-        <a href="/about" class="text">About</a>
-        <a href="/contato" class="text">Contact</a>
+        <a href="/registro" class="text">Registro</a>
+        <a href="/statistics" class="text">Estatísticas</a>
       </nav>
       <button class="logout-button" type="button" @click="logout">Sair</button>
     </div>
