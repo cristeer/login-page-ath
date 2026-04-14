@@ -2,7 +2,8 @@
 
 :root {
     --font-principal: 'Google Sans', sans-serif;
-    --cor-background: #412B6B;
+    --cor-background: #221f27;
+    /* --cor-background: #412B6B; */
     --cor-secundaria: rgba(255, 255, 255, 0.123);
     --cor-botao: #5C3E94;
     --cor-texto: #FFFFFF;
@@ -26,8 +27,7 @@ main {
     align-items: center;
     height: 100vh;
     width: 100%;
-    /* background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133); */
-    /* background-image: url('../public/background.jpg'); */
+    background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133);
     background-color: var(--cor-background);
     background-size: cover;
     background-position: center; 
