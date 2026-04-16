@@ -12,6 +12,9 @@ import loginRoutes from "./loginRoutes.js";
 // Importa as rotas protegidas (home)
 import homeRoutes from "./homeRoutes.js"
 
+// Importa as rotas de matérias
+import materiaRoutes from "./materiaRoutes.js"
+
 // Função que registra todas as rotas na aplicação
 const routes = (app) => {
     // ROTA DE TESTE: GET /
@@ -21,7 +24,8 @@ const routes = (app) => {
     // Middleware JSON: converte corpo das requisições de JSON para objeto JS
     // Registra todas as rotas de autenticação (POST /register, POST /login)
     // Registra todas as rotas protegidas (GET /home)
-    app.use(express.json(), loginRoutes, homeRoutes);
+    // Registra todas as rotas de matérias (CRUD de matérias)
+    app.use(express.json(), loginRoutes, homeRoutes, materiaRoutes);
 };
 
 export default routes;
