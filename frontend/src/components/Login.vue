@@ -78,37 +78,37 @@
         <!-- isLogin = true form de login, isLogin = false form de registro -->
         <div class="caixa" :class="{ active: !isLogin }">
             <div class="login_form">
-                <h1>Bem Vindo ao sStudy! </h1>
+                <h1 class="title">Bem Vindo ao sStudy! </h1>
                 <!-- Formulário com @submit.prevent="login" chama a função login -->
                 <form @submit.prevent="login">
                     <div class="input-box">
                         <span class="icon"></span>
                         <!-- v-model vincula o valor do input ao ref email -->
                         <input v-model="email" type="email" required>
-                        <label>Email</label>
+                        <label class="text">Email</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"></span>
                         <!-- v-model vincula o valor do input ao ref password -->
                         <input v-model="password" type="password" required>
-                        <label>Senha</label>
+                        <label class="text">Senha</label>
                     </div>
 
-                    <button type="submit">Entrar</button>
+                    <button type="submit" class="text">Entrar</button>
 
                     <div class="remember_password">
-                        <a href="recuperar">Esqueci minha senha</a>
+                        <a href="recuperar" class="text">Esqueci minha senha</a>
                     </div>
                     
                     <!-- @click.prevent="isLogin = false" muda isLogin para false -->
                     <div class="register">
-                        <p>Não tem uma conta? <a href="register" @click.prevent="isLogin = false">Cadastrar-se</a></p>
+                        <p class="text">Não tem uma conta? <a href="register" @click.prevent="isLogin = false">Cadastrar-se</a></p>
                     </div>
                 </form>
             </div>
 
             <div class="registration_form">
-                <h1>Criar Conta</h1>
+                <h1 class="title">Criar Conta</h1>
                 <form @submit.prevent="register">
 
                     <div class="input-box">
@@ -122,21 +122,21 @@
                         <span class="icon"></span>
                         <!-- v-model vincula o valor do input ao ref email -->
                         <input v-model="email" type="email" required>
-                        <label>Email</label>
+                        <label class="text">Email</label>
                     </div>
 
                     <div class="input-box">
                         <span class="icon"></span>
                         <!-- v-model vincula o valor do input ao ref password -->
                         <input v-model="password" type="password" required>
-                        <label>Senha</label>
+                        <label class="text">Senha</label>
                     </div>
 
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" class="text">Cadastrar</button>
 
                     <!-- @click.prevent="isLogin = true" muda isLogin para true -->
                     <div class="login">
-                        <p>Já tem uma conta? <a href="login" @click.prevent="isLogin = true">Entrar</a></p>
+                        <p class="text">Já tem uma conta? <a href="login" @click.prevent="isLogin = true">Entrar</a></p>
                     </div>
                 </form>
             </div>
