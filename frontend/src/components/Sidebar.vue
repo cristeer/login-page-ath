@@ -33,9 +33,9 @@ const logout = () => {
         <i class="fa-solid fa-house"></i>
         <span class="label">Home</span>
       </router-link>
-      <router-link to="/about" class="nav-item" active-class="active">
+      <router-link to="/registro" class="nav-item" active-class="active">
         <i class="fa-solid fa-info-circle"></i>
-        <span class="label">Sobre</span>
+        <span class="label">Registro</span>
       </router-link>
     </nav>
 
