@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import Registro from '../components/Registro.vue'
+import Historico from '../components/Historico.vue'
 
 // Mapeando cada rota para componentes
 const routes = [
@@ -25,6 +26,12 @@ const routes = [
     path: '/registro',
     name: 'Registro',
     component: Registro,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/historico',
+    name: 'Historico',
+    component: Historico,
     meta: { requiresAuth: true }
   }
 ]

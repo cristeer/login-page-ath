@@ -2,7 +2,7 @@
 
 :root {
     --font-principal: 'Google Sans', sans-serif;
-    --cor-background: #412B6B;
+    --cor-background: rgba(19, 11, 34, 0.8);
     --cor-secundaria: rgba(255, 255, 255, 0.123);
     --cor-botao: #5C3E94;
     --cor-texto: #FFFFFF;

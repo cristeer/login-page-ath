@@ -37,6 +37,10 @@ const logout = () => {
         <i class="fa-solid fa-info-circle"></i>
         <span class="label">Registro</span>
       </router-link>
+      <router-link to="/historico" class="nav-item" active-class="active">
+        <i class="fa-solid fa-history"></i>
+        <span class="label">Histórico</span>
+      </router-link>
     </nav>
 
     <div class="sidebar-footer">
@@ -60,7 +64,7 @@ const logout = () => {
   top: 0;
   height: 100vh;
   width: 250px;
-  background: linear-gradient(135deg, rgba(65, 43, 107, 0.9) 0%, rgba(92, 62, 148, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(9, 1, 24, 0.9) 0%, rgba(39, 9, 95, 0.9) 100%);
   backdrop-filter: blur(10px);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
@@ -155,7 +159,7 @@ const logout = () => {
   justify-content: center;
   gap: 8px;
   padding: 12px 15px;
-  background-color: rgba(255, 65, 65, 0.8);
+  background-color: rgba(196, 25, 25, 0.8);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
@@ -167,7 +171,7 @@ const logout = () => {
 }
 
 .logout-btn:hover {
-  background-color: rgba(255, 65, 65, 1);
+  background-color: rgb(165, 27, 27);
   box-shadow: 0 0 15px rgba(255, 65, 65, 0.5);
 }
 
