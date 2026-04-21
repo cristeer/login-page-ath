@@ -2,10 +2,11 @@
 import { createApp } from 'vue'
 
 import App from './App.vue'
-import router from './router.js'  // Importa as rotas
+import router from './router'
+
+import '@fortawesome/fontawesome-free/css/all.css'
 
 import './style.css';
 
-createApp(App)
-  .use(router)  // Ativa o router na aplicação
-  .mount('#app')
+// incorporar o router na aplicacao
+createApp(App).use(router).mount('#app')
