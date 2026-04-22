@@ -1,153 +1,81 @@
-// ============================================================================
-// 📌 ARQUIVO: materiaController.js
-// DESCRIÇÃO: Lógica de negócio para matérias
-// FUNÇÃO: Validar dados, processar requisições e retornar respostas
-// ============================================================================
-
 import materiaModel from "../models/materiaModel.js";
 
-const materiaController = {
-    // ========================================================================
-    // CRIAR MATÉRIA
-    // ========================================================================
-    createMateria: async (req, res) => {
-        try {
-            const user_id = req.user.id; // Vem do middleware auth
-            const { nome, tempo_estimado_horas, importancia, descricao } = req.body;
+class materiaController {
 
-            // Validações
-            if (!nome || !tempo_estimado_horas || !importancia) {
-                return res.status(400).json({ 
-                    erro: "Nome, tempo estimado e importância são obrigatórios" 
-                });
-            }
+    static async cadastrarMaterias(req, res) {
+        const { nome, tempo_estudo, descricao } = req.body;
+        const user_id = req.user.id;
 
-            if (importancia < 1 || importancia > 5) {
-                return res.status(400).json({ 
-                    erro: "Importância deve ser entre 1 e 5" 
-                });
-            }
+        if (!nome || !tempo_estudo)
+            return res.status(404).json({ message: "Os campos de nome e tempo de estudo são obrigatórios!" });
 
-            if (tempo_estimado_horas <= 0) {
-                return res.status(400).json({ 
-                    erro: "Tempo estimado deve ser maior que 0" 
-                });
-            }
-
-            // Chamar model para criar no BD
-            const novaMateria = await materiaModel.create(
-                user_id, 
-                nome, 
-                tempo_estimado_horas, 
-                importancia, 
-                descricao
-            );
-
-            return res.status(201).json({ 
-                mensagem: "Matéria criada com sucesso",
-                materia: novaMateria 
-            });
-
-        } catch (erro) {
-            console.error("Erro ao criar matéria:", erro);
-            return res.status(500).json({ erro: "Erro ao criar matéria" });
+        if (tempo_estudo <= 0) {
+            return res.status(400).json({ message: "O tempo de estudo não pode ser igual ou menor que 0!" });
         }
-    },
 
-    // ========================================================================
-    // LISTAR MATÉRIAS DO USUÁRIO
-    // ========================================================================
-    listMateria: async (req, res) => {
         try {
-            const user_id = req.user.id;
-
-            const materias = await materiaModel.getAllByUserId(user_id);
-
-            return res.status(200).json({
-                mensagem: "Matérias carregadas com sucesso",
-                materias: materias
-            });
-
-        } catch (erro) {
-            console.error("Erro ao listar matérias:", erro);
-            return res.status(500).json({ erro: "Erro ao listar matérias" });
-        }
-    },
-
-    // ========================================================================
-    // BUSCAR MATÉRIA POR ID
-    // ========================================================================
-    getMateria: async (req, res) => {
-        try {
-            const user_id = req.user.id;
-            const { id } = req.params;
-
-            const materia = await materiaModel.getById(id, user_id);
-
-            if (!materia) {
-                return res.status(404).json({ erro: "Matéria não encontrada" });
+            const novaMateria = await materiaModel.createMaterias(nome, tempo_estudo, descricao, user_id);
+            return res.status(201).json({ message: "Matéria criada com sucesso!", materia: novaMateria });
+        } catch (error) {
+            if (error.code == "23505") {
+                return res.status(400).json({ message: "Matéria já cadastrada!" });
+            } else {
+                console.log("Erro:", error);
+                return res.status(500).json({ message: "Erro não foi possível cadastrar matéria." });
             }
-
-            return res.status(200).json({
-                mensagem: "Matéria encontrada",
-                materia: materia
-            });
-
-        } catch (erro) {
-            console.error("Erro ao buscar matéria:", erro);
-            return res.status(500).json({ erro: "Erro ao buscar matéria" });
-        }
-    },
-
-    // ========================================================================
-    // ATUALIZAR MATÉRIA
-    // ========================================================================
-    updateMateria: async (req, res) => {
-        try {
-            const user_id = req.user.id;
-            const { id } = req.params;
-            const dados = req.body;
-
-            const materiaAtualizada = await materiaModel.update(id, user_id, dados);
-
-            if (!materiaAtualizada) {
-                return res.status(404).json({ erro: "Matéria não encontrada" });
-            }
-
-            return res.status(200).json({
-                mensagem: "Matéria atualizada com sucesso",
-                materia: materiaAtualizada
-            });
-
-        } catch (erro) {
-            console.error("Erro ao atualizar matéria:", erro);
-            return res.status(500).json({ erro: "Erro ao atualizar matéria" });
-        }
-    },
-
-    // ========================================================================
-    // DELETAR MATÉRIA
-    // ========================================================================
-    deleteMateria: async (req, res) => {
-        try {
-            const user_id = req.user.id;
-            const { id } = req.params;
-
-            const resultado = await materiaModel.delete(id, user_id);
-
-            if (!resultado) {
-                return res.status(404).json({ erro: "Matéria não encontrada" });
-            }
-
-            return res.status(200).json({
-                mensagem: "Matéria deletada com sucesso"
-            });
-
-        } catch (erro) {
-            console.error("Erro ao deletar matéria:", erro);
-            return res.status(500).json({ erro: "Erro ao deletar matéria" });
         }
     }
-};
+
+    static async listarMaterias(req, res) {
+        const user_id = req.user.id;
+
+        if (!user_id)
+            return res.status(404).json({ message: "ID de usuário não existe!" });
+
+        try {
+            const materias = await materiaModel.listMaterias(user_id);
+            return res.status(201).json({ message: "Listar matérias...", materias: materias });
+        } catch (error) {
+            console.log("Erro:", error);
+            return res.status(500).json({ message: "Não foi possível listar as matérias." });
+        }
+    }
+
+    static async updateMaterias(req, res) {
+        const user_id = req.user.id;
+        const dados = req.body;
+        const { id } = req.params; //params vem da rota.
+
+        try {
+            const materiaAtualizada = await materiaModel.updateMaterias(id, user_id, dados);
+
+            if (!materiaAtualizada)
+                return res.status(404).json({ message: "Materia não encontrada" });
+
+            return res.status(201).json({ message: "Matéria atualizada com sucesso!", materia: materiaAtualizada });
+
+        } catch (error) {
+            console.log("Erro:", error);
+            return res.status(500).json({ message: "Erro ao atualizar a matéria." });
+        }
+    }
+
+    static async deleteMaterias(req, res) {
+        const user_id = req.user.id;
+        const { id } = req.params;
+
+        try {
+            const resultado = await materiaModel.deleteMaterias(id, user_id);
+
+            if (!resultado)
+                return res.status(404).json({ message: "Não foi possível encontrar a matéria" });
+
+            return res.status(200).json({ message: "Matéria deletada com sucesso!" });
+        } catch (error) {
+            console.log("Erro:", error);
+            return res.status(500).json({ message: error.message });
+        }
+    }
+}
 
 export default materiaController;

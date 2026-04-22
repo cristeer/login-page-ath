@@ -2,45 +2,43 @@
 import Sidebar from './Sidebar.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import materiaService from '../services/materiaService.js'
 
 const router = useRouter()
 
 const nome = ref('')
-const tempo = ref('')
+const tempoEmMinutos = ref('')
 const descricao = ref('')
 
-const adicionarMateria = () => {
+const adicionarMateria = async () => {
   // Validar campos
   if (!nome.value.trim()) {
     alert('Por favor, preencha o nome da disciplina')
     return
   }
 
-  // Criar objeto da matéria
+  // Criar objeto da matéria com os campos que o backend espera
   const novaMateria = {
     nome: nome.value,
-    tempo: tempo.value || 'Não especificado',
+    tempo_estudo: tempoEmMinutos.value || 0,
     descricao: descricao.value || 'Sem descrição'
   }
 
-  // Obter disciplinas do localStorage
-  const disciplinas = JSON.parse(localStorage.getItem('disciplinas')) || []
+  try {
+    await materiaService.criar(novaMateria)
 
-  // Adicionar a nova matéria
-  disciplinas.push(novaMateria)
+    // Limpar formulário
+    nome.value = ''
+    tempoEmMinutos.value = ''
+    descricao.value = ''
 
-  // Salvar no localStorage
-  localStorage.setItem('disciplinas', JSON.stringify(disciplinas))
+    alert('Matéria adicionada com sucesso!')
 
-  // Limpar formulário
-  nome.value = ''
-  tempo.value = ''
-  descricao.value = ''
-
-  alert('Matéria adicionada com sucesso!')
-
-  // Redirecionar para home
-  router.push('/home')
+    // Redirecionar para home
+    router.push('/home')
+  } catch (erro) {
+    alert(erro.message || 'Erro ao adicionar matéria')
+  }
 }
 </script>
 

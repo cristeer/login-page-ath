@@ -24,7 +24,7 @@ const materiaService = {
     // Criar nova matéria
     criar: async (dados) => {
         try {
-            const response = await api.post('/materias', dados);
+            const response = await api.post('/materia', dados);
             return response.data;
         } catch (erro) {
             throw erro.response?.data || erro;
@@ -34,7 +34,7 @@ const materiaService = {
     // Listar todas as matérias do usuário
     listar: async () => {
         try {
-            const response = await api.get('/materias');
+            const response = await api.get('/materia');
             return response.data;
         } catch (erro) {
             throw erro.response?.data || erro;
@@ -44,7 +44,7 @@ const materiaService = {
     // Buscar uma matéria específica
     buscar: async (id) => {
         try {
-            const response = await api.get(`/materias/${id}`);
+            const response = await api.get(`/materia/${id}`);
             return response.data;
         } catch (erro) {
             throw erro.response?.data || erro;
@@ -54,7 +54,7 @@ const materiaService = {
     // Atualizar matéria
     atualizar: async (id, dados) => {
         try {
-            const response = await api.put(`/materias/${id}`, dados);
+            const response = await api.put(`/materia/${id}`, dados);
             return response.data;
         } catch (erro) {
             throw erro.response?.data || erro;
@@ -64,7 +64,7 @@ const materiaService = {
     // Deletar matéria
     deletar: async (id) => {
         try {
-            const response = await api.delete(`/materias/${id}`);
+            const response = await api.delete(`/materia/${id}`);
             return response.data;
         } catch (erro) {
             throw erro.response?.data || erro;

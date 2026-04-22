@@ -47,10 +47,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // Verifica se a rota requer autenticação
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  
+
   // Obtém o token do localStorage
   const token = localStorage.getItem('token')
-  
+
   if (requiresAuth && !token) {
     // Se exigir autenticação mas não tem token, redireciona para login
     alert('Você precisa fazer login para acessar essa página')
