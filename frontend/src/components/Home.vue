@@ -1,100 +1,64 @@
 <script setup>
+import Sidebar from './Sidebar.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-function logout() {
-  localStorage.removeItem('token')
-  router.push('/login')
+const irParaRegistro = () => {
+  router.push('/registro')
 }
 </script>
 
 <template>
-  <header class="home-header">
-    <div class="header-div">
-      <nav class="nav-links">
-        <a href="/home" class="text">Home</a>
-        <a href="/registro" class="text">Registro</a>
-        <a href="/statistics" class="text">Estatísticas</a>
-      </nav>
-      <button class="logout-button" type="button" @click="logout">Sair</button>
-    </div>
-  </header>
-  <main>
-    <div class="home-container">
-      <h1 class="texto">Bem-vindo à Home!</h1>
-      <p class="texto">Pronto para elevar sua nota?!</p>
-    </div>
-  </main>
+  <div class="home-container">
+    <Sidebar />
+    
+    <main class="home-content">
+      <button class="btn-adicionar" @click="irParaRegistro">Iniciar Atividade</button>
+    </main>
+  </div>
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
-
-:root {
-    --font-principal: 'Google Sans', sans-serif;
-    --cor-background: #5C3E94;
-    --cor-fundo: #5C3E94;
-    --cor-secundaria: rgba(255, 255, 255, 0.123);
-    --cor-botao: #7132CA;
-    --cor-texto: #FFFFFF;
-}
-.texto {
-  font-family: var(--font-principal);
-  color: var(--cor-texto);
-}
-
-.home-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 20px;
-  background-color: var(--cor-fundo);
-}
-
-.header-div {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  max-width: 500px;
-  gap: 16px;
-}
-
-.nav-links a {
-  font-family: var(--font-principal);
-  text-decoration: none;
-  color: inherit;
-  color: var(--cor-texto);
-}
-
-.logout-button {
-  padding: 8px 14px;
-  width: 120px;
-  border: none;
-  border-radius: 6px;
-  background: #8257d1;
-  color: var(--cor-texto);
-  font-family: var(--font-principal);
-  cursor: pointer;
-}
-
-.logout-button:hover {
-  background: #28014d;
-}
-
+<style scoped>
 .home-container {
   display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.home-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  background-color: var(--cor-background, #412B6B);
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
+}
+
+.btn-adicionar {
+  background-color: var(--cor-botao, #5C3E94);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.btn-adicionar:hover {
+  background-color: #6d4ca8;
+  box-shadow: 0 0 20px rgba(92, 62, 148, 0.5);
+}
+
+@media (max-width: 768px) {
+  .home-content {
+    margin-left: 0;
+    padding: 20px;
+  }
 }
 </style>
+

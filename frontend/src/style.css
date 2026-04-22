@@ -2,8 +2,7 @@
 
 :root {
     --font-principal: 'Google Sans', sans-serif;
-    --cor-background: #221f27;
-    /* --cor-background: #412B6B; */
+    --cor-background: rgba(19, 11, 34, 0.8);
     --cor-secundaria: rgba(255, 255, 255, 0.123);
     --cor-botao: #5C3E94;
     --cor-texto: #FFFFFF;
@@ -15,10 +14,14 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    font-family: var(--font-principal);
+    background-color: var(--cor-background);
+    color: var(--cor-texto);
 }
 
 main {
@@ -30,7 +33,7 @@ main {
     background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133);
     background-color: var(--cor-background);
     background-size: cover;
-    background-position: center; 
+    background-position: center;
     background-repeat: no-repeat;
 }
 
@@ -54,22 +57,25 @@ main {
     margin-bottom: 50px;
 }
 
-.login_form h1, .registration_form h1 {
+.login_form h1,
+.registration_form h1 {
     font-size: 2em;
     color: var(--cor-texto);
     text-align: center;
 }
 
-.login_form, .registration_form {
+.login_form,
+.registration_form {
     position: absolute;
     width: 100%;
     padding: 40px;
-    transition: transform 0.5s ease; /* Animação entre as abas */
+    transition: transform 0.5s ease;
+    /* Animação entre as abas */
 }
 
 .login_form {
     /* ficar no centro por padrão */
-    transform: translateX(0); 
+    transform: translateX(0);
 }
 
 .title {
@@ -84,12 +90,12 @@ main {
 
 .registration_form {
     /* ficar escondido na direita por padrão */
-    transform: translateX(400px); 
+    transform: translateX(400px);
 }
 
 .caixa.active .login_form {
     /* deslizar o login para a esquerda */
-    transform: translateX(-400px); 
+    transform: translateX(-400px);
 }
 
 .caixa.active .registration_form {
@@ -110,14 +116,14 @@ main {
     left: 5px;
     transform: translateY(-50%);
     font-size: 1.1em;
-    color:var(--cor-texto);
-    font-weight: 500 ;
+    color: var(--cor-texto);
+    font-weight: 500;
     pointer-events: none;
     transition: 0.5s;
 }
 
-.input-box input:focus ~ label,
-.input-box input:valid ~ label {
+.input-box input:focus~label,
+.input-box input:valid~label {
     top: -10px;
 }
 
@@ -146,25 +152,31 @@ main {
     text-decoration: none;
 }
 
-.register,  .login {
+.register,
+.login {
     margin-top: 10px;
     text-align: center;
     font-size: 1rem;
 }
 
-.register a, .login a {
+.register a,
+.login a {
     color: var(--cor-texto);
     text-decoration: none;
 }
 
-.register a:hover, .login a:hover, .remember_password a:hover {
+.register a:hover,
+.login a:hover,
+.remember_password a:hover {
     text-decoration: underline;
     color: rgb(137, 71, 241);
 }
 
-.register p, .login p {
+.register p,
+.login p {
     color: var(--cor-texto);
 }
+
 button {
     width: 100%;
     height: 45px;
@@ -181,4 +193,3 @@ button {
 button:hover {
     background: #28014d;
 }
-
