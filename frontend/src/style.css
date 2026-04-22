@@ -30,7 +30,8 @@ main {
     align-items: center;
     height: 100vh;
     width: 100%;
-    background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133);
+    /* background-image: linear-gradient(to bottom right, oklch(20.5% 0 0) 60%, #221133); */
+    /* background-image: url('../public/background.jpg'); */
     background-color: var(--cor-background);
     background-size: cover;
     background-position: center;
